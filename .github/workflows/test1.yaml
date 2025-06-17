@@ -23,3 +23,8 @@ jobs:
             if( !pr_title.startsWith("feat: ") && !pr_title.startsWith("fix: ") ){
               core.setFailed("PR title must start with `feat: ` ot `fix: `");
             }
+            github.rest.pulls.createReview({
+              ...context.repo,
+              pull_number: context.payload.pull_request.number,
+              event: "APPROVE"
+            })
